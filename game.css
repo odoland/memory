@@ -1,0 +1,12 @@
+.grid {
+    position: flex;
+    flex-wrap: wrap;
+
+}
+
+.card {
+    display: inline-block;
+    /* flex: 0 0 32%; don't grow, don't shrink, width */
+    height: 50px;
+    margin-bottom: 5px;
+}
