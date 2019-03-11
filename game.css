@@ -1,12 +1,37 @@
+#game {
+    display: none;
+}
+
 .grid {
-    position: flex;
-    flex-wrap: wrap;
+    width: 100%;
 
 }
 
-.card {
-    display: inline-block;
-    /* flex: 0 0 32%; don't grow, don't shrink, width */
-    height: 50px;
-    margin-bottom: 5px;
+/* ensure everyting before and after row stays in that row */
+.row:before, 
+.row:after {
+        content:"";
+        display: table ;
+        clear:both;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+}
+
+[class*="col-"] {
+    display: block;
+    height: auto;
+    width: auto;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+}
+
+@keyframes spin {
+    from {transform:rotateY(180deg);}
+    to {transform:rotateY(360deg);}
 }

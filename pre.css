@@ -5,8 +5,6 @@ body {
     );
 }
 
-
-
 .open {
   font-family: 'Dancing Script', cursive;
   font-weight: bolder;
@@ -16,29 +14,44 @@ body {
   color: #360a0a;
   text-shadow: 2px 2px rgb(226, 177, 177) ;
 
-  position: relative;
   text-align: center;
 }
 
+select {
+    margin: 40px auto;
+
+    display: block;
+    
+    height: 40px;
+    width: 200px;
+
+    font-size: 1em;
+    background-color: peachpuff; 
+    
+}
+
+.pre-forms { /* for both select and start button */
+    
+    box-shadow: 3px 4px 1px 0px #8a2121;
+    
+    font-family: 'Dancing Script';
+    letter-spacing: 1px;
+    font-weight: bolder;
+    text-shadow: 2px 2px rgb(226, 177, 177);
+}
 button.start {
-   
+    
     /* button stuff */
     margin: 0 auto;
     display: block;
     
     height: 50px;
     width: 100px;
-
-    box-shadow: 3px 4px 1px 0px #8a2a21;
-    background-color: pink;
-
+    
     /* font css */
-    color: #360a0a;
-    font-family: 'Dancing Script';
-    letter-spacing: 1px;
-    font-weight: bolder;
     font-size: 2em;
-    text-shadow: 2px 2px rgb(226, 177, 177);
+    color: #360a0a;
+    background-color: pink;
 }
 
 button:hover{
@@ -47,12 +60,5 @@ button:hover{
     color: pink;
 }
 
-#opener {
-    position: flex;
-    justify-content: center;
-    vertical-align: center;
-}
 
-#game {
-    display: none;
-}
+

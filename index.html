@@ -12,8 +12,14 @@
 <body>
     <div id="opener">
         <h1 class="open"> Memory Game </h1>
+        
+        <select id="size" class="pre-forms">
+            <option value="4">4x4 cards</option>
+            <option value="5">5x5 cards</option>
+            <option value="6">6x6 cards</option>
+        </select>
 
-        <button class="start" onclick="gameStart()"> Play </button>
+        <button class="start pre-forms" onclick="gameStart()"> Play </button>
     </div>
 
 
@@ -29,4 +35,5 @@
     </div>
 </body>
 
+<script src="func.js"></script>
 <script src="scripts.js"></script>
