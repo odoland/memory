@@ -15,7 +15,17 @@ function range(end) {
 }
 
 function sum(array) {
+    /* sums the elements of the array */
     return array.reduce( (acc, ele) => acc + ele, 0);
+}
+
+function removeMiddleElementFromArray(arr) {
+    /* Removes the middle element of the array */
+    let mid = Math.floor(arr.length/2);
+    let last = arr.length - 1;
+
+    [arr[mid], arr[last]] = [arr[last], arr[mid]];
+    arr.pop();
 }
 
 function canClick(query, position, clicked) {
@@ -26,6 +36,8 @@ function canClick(query, position, clicked) {
     
     return !clicked[position] && query.length < 2;
 }
+
+/* Functions for the game logic */
 
 function updateClicked(clicked, status, ...positions) {
     /* updates the array (clicked) status can be either 1 (clicked) or 0 (unclicked) */

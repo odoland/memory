@@ -4,14 +4,15 @@ var grid = []; // 2d grid holding the image_ids
 var query = []; // Holds at most 2 items for the images.
 var clicked= [];
 var size;
+var clicks = 0;
 
 
 function gameStart() {
     /* Starts the game mode specified by the forms. */
     size = document.getElementById("size").value;
 
-    document.getElementById("opener").remove();
-    document.getElementById("game").style.display = "block";
+    document.getElementById("opener").style.display = "none";
+    document.getElementById("game").style.display = "flex";
 
     clicked = new Array(size*size).fill(0); // Fill array with 0s. 1 marks clicked
     populateGrid(size);
@@ -36,13 +37,21 @@ function populateGrid(size) {
             
             // Position calculated for each row. from 1 .. size**2
             position =  i*size + j;  
+
             row += `<div class="col-${j}" id="card${position}" onclick="cardClick(${position})">
-            <img id="img${position}" src="images/back.png">
+            <img class="cards" id="img${position}" src="images/back.png">
             </div>`;
         }
 
         row += `</div>`;
         grid.innerHTML += row;
+    }
+
+    // If it's an odd grid size (i.e. 5x5) change the center to a duck
+    if (size % 2 === 1) {
+        let mid = Math.floor((size * size)/2);
+        document.getElementById(`card${mid}`).onclick = "";
+        document.getElementById(`img${mid}`).src = "images/middle.gif";
     }
 }
 
@@ -54,8 +63,15 @@ function assignCards(size) {
      * range(5) creates [0, 1, 2, 3, 4]
      * shuffleArray scrambles all elements in the array
     */
+
     let total = Math.floor((size*size)/2); // Total number of unique pics is the size **2 in half. Floor for odd numbers
-    let random_indices = shuffleArray(range(size*size)); // 0, 1, 2, 3.... size**2
+    let all_indices = range(size*size); // 0, 1, 2, 3.... size**2
+
+    // Remove the middle element of an odd numbered grid.
+    if (size % 2 === 1) removeMiddleElementFromArray(all_indices);
+
+    // Shuffle both for randomized assignment of cards.
+    let random_indices = shuffleArray(all_indices);
     let image_ids = shuffleArray(range(total));
 
     while(image_ids.length > 0) {
@@ -76,8 +92,10 @@ function cardClick(position) {
         updateClicked(clicked, 1, position);
         query.push(position);
 
+
         if (query.length === 2) {
-            
+            incrementClick();
+
             if (isMatch(query, grid)) { // Is a match
                 lockCards(...query); // Lock cards into place
                 checkGameEnd(clicked, size); // Will check if the game ended.
@@ -85,12 +103,26 @@ function cardClick(position) {
                 coverCards(...query); // cover  cards
                 updateClicked(clicked, 0, ...query )
             }
-            setTimeout( ()=> query = [], 1000); // Reset
+            setTimeout( () => query = [], 1000); // Reset
         }
 
     } else {
         console.log("Cannot click that: ", query, clicked);
     }
-
-    
 }
+
+function incrementClick() {
+    document.getElementById("clicks").innerHTML = ++clicks;
+}
+
+function resetGame() {
+    grid = []; // 2d grid holding the image_ids
+    query = []; // Holds at most 2 items for the images.
+    clicked= [];
+    clicks = 0;
+    document.getElementById("opener").style.display = "block";
+
+    document.querySelector(".grid").innerHTML = "";
+    document.getElementById("game").style.display = "none";
+}
+

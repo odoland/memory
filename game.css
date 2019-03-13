@@ -1,18 +1,47 @@
 #game {
     display: none;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.bar {
+    /* color of the bars */
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background-color: maroon;
+    border: 2px solid gold;
+    
+    /* Font */
+    text-align: center;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-style: bold;
+    font-size: x-large;
+    color: yellow;
+
+}
+
+.bar-links {
+    display: inline-block;
+    width: 15%;
+    color: white;
+    font-size: 1.2em;
+}
+
+.bar-links:hover {
+    transition: color 1.5s;
+    color: gold;
+    text-shadow: 0 0 12px black;
+}
+
+.left {
+    border-left: thick solid #ff0000;
 }
 
 .grid {
-    width: 100%;
-
-}
-
-/* ensure everyting before and after row stays in that row */
-.row:before, 
-.row:after {
-        content:"";
-        display: table ;
-        clear:both;
+    display: inline-block;
 }
 
 .row {
@@ -26,12 +55,33 @@
     width: auto;
 }
 
-img {
+.cards {
     height: 100px;
     width: 100px;
+}
+
+#reset {
+    background-color: pink;
+    color: brown;
+}
+#reset:hover {
+    background-color: red;
+    color: pink;
 }
 
 @keyframes spin {
     from {transform:rotateY(180deg);}
     to {transform:rotateY(360deg);}
+}
+
+
+@media screen and (max-width:1280px) {
+    .grid {
+        width: auto;
+        padding: .5em;
+        margin: 0
+    }
+    .bar {
+        padding: 0
+    }
 }
