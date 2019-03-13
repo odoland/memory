@@ -18,11 +18,6 @@ function sum(array) {
     return array.reduce( (acc, ele) => acc + ele, 0);
 }
 
-function setImage(elementID, src) {
-    /* Sets element's image source to src.*/
-    document.getElementById(elementID).src = src;
-}
-
 function canClick(query, position, clicked) {
     /* Returns boolean on whether the user can click or not.
     * User can click iff they did not click 2 cards already OR
@@ -39,7 +34,6 @@ function updateClicked(clicked, status, ...positions) {
 function turnCard(position) {
     /* Spins the card animation, to turn the card to reveal */
 
-    
     let card = document.getElementById(`card${position}`);
     let image = document.getElementById(`img${position}`);
 
@@ -59,8 +53,7 @@ function coverCards(...positions) {
     
     function animateCover(i) {
 
-        setTimeout(() => {document.getElementById(`img${i}`).src = `images/back.png`}, 750);
-        console.log("running animateCover")
+        setTimeout(() => {document.getElementById(`img${i}`).src = `images/back.png`}, 1000);
     }
 
     positions.forEach(animateCover);
@@ -80,5 +73,12 @@ function checkGameEnd(clicked, size) {
     if (sum(clicked) === size*size) {
         // reset the game;
         console.log("game over!!!");
+    }
+}
+
+function cheat(grid) {
+    let size = Math.sqrt(grid.length);
+    for (let i=0; i<size; i++) {
+        console.log(grid.slice(i*size, i*size + size));
     }
 }

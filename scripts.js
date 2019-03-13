@@ -85,7 +85,7 @@ function cardClick(position) {
                 coverCards(...query); // cover  cards
                 updateClicked(clicked, 0, ...query )
             }
-            query = []; // Reset
+            setTimeout( ()=> query = [], 1000); // Reset
         }
 
     } else {
