@@ -1,4 +1,4 @@
-
+g
 /* Global variables for the game */
 var grid = []; // 2d grid holding the image_ids
 var query = []; // Holds at most 2 items for the images.
