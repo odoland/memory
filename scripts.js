@@ -6,6 +6,9 @@ var clicked= [];
 var size;
 var clicks = 0;
 
+/* Global Parameters to tune */
+const CLICK_DELAY = 800;
+
 
 function gameStart() {
     /* Starts the game mode specified by the forms. */
@@ -103,7 +106,7 @@ function cardClick(position) {
                 coverCards(...query); // cover  cards
                 updateClicked(clicked, 0, ...query )
             }
-            setTimeout( () => query = [], 1000); // Reset
+            setTimeout( () => query = [], CLICK_DELAY); // Click Delay
         }
 
     } else {
@@ -112,7 +115,7 @@ function cardClick(position) {
 }
 
 function incrementClick() {
-    document.getElementById("clicks").innerHTML = ++clicks;
+    document.querySelector("#score").innerHTML = ++clicks;
 }
 
 function resetGame() {

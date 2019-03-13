@@ -1,3 +1,4 @@
+var LOWEST_SCORE = Infinity;
 /** "Module for shortcut functions!!" */
 
 function shuffleArray(array) {
@@ -65,7 +66,7 @@ function coverCards(...positions) {
     
     function animateCover(i) {
 
-        setTimeout(() => {document.getElementById(`img${i}`).src = `images/back.png`}, 1000);
+        setTimeout(() => {document.getElementById(`img${i}`).src = `images/back.png`}, 800);
     }
 
     positions.forEach(animateCover);
@@ -82,9 +83,20 @@ function lockCards(...positions) {
 }
 
 function checkGameEnd(clicked, size) {
+    
+    function setVictoryScreen() {
+        document.querySelector(".grid").innerHTML = ` <img src="images/victory.gif">`
+        document.querySelector("#reset").innerHTML = "Play Again!"
+
+    }
     if (sum(clicked) === size*size) {
         // reset the game;
         console.log("game over!!!");
+        setTimeout(setVictoryScreen, 800);
+        
+        let current_score = parseInt(document.getElementById("score").innerHTML);
+        LOWEST_SCORE = Math.min(current_score, LOWEST_SCORE);
+        document.querySelector("#lowest_score").innerHTML += `<tr> ${LOWEST_SCORE} <tr>`
     }
 }
 

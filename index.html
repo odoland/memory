@@ -3,8 +3,9 @@
 <head>
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
     
-    <link rel="stylesheet" href="pre.css">
-    <link rel="stylesheet" href="game.css">
+    <link rel="stylesheet" href="css/pre.css">
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/score.css"
     
 
 </head>
@@ -19,6 +20,7 @@
             <option value="6">6x6 cards</option>
             <option value="7">7x7 cards</option>
 
+
         </select>
 
         <button class="start pre-forms" onclick="gameStart()"> Play </button>
@@ -28,17 +30,27 @@
     <!-- Actual game -->
     <div id="game">
         
-        <div id="clicks" class="bar scorebar">
-            <a>Match the Pokemon!</a> 
+        <div class="bar">
+            <a id="score">Match the Pokemon</a>
         </div>
         
         <div class="grid"> </div>
         
-        <div class="leaderboard"> <img src="images/back.png"> </div>
+        <div class="leaderboard">
+                <table id="scores">
+                        <tr>
+                            <th>Lowest Score: </th>
+                        </tr>
+
+                        <tr id="lowest_score">
+
+                        </tr>
+                </table>
+            
+        </div>
         
         <footer class="bar">
             <button id="reset" onclick="resetGame()">RESET GAME</button>
-
         </footer>
           
  
