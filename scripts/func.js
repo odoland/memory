@@ -89,14 +89,14 @@ function checkGameEnd(clicked, size) {
         document.querySelector("#reset").innerHTML = "Play Again!"
 
     }
-    if (sum(clicked) === size*size) {
+    if (sum(clicked) === size*size - (size%2) ) { // odd sizes get extra 1
         // reset the game;
         console.log("game over!!!");
         setTimeout(setVictoryScreen, 800);
         
         let current_score = parseInt(document.getElementById("score").innerHTML);
         LOWEST_SCORE = Math.min(current_score, LOWEST_SCORE);
-        document.querySelector("#lowest_score").innerHTML += `<tr> ${LOWEST_SCORE} <tr>`
+        document.querySelector("#lowest_score").innerHTML = `<tr> ${LOWEST_SCORE} <tr>`
     }
 }
 

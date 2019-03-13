@@ -1,0 +1,12 @@
+.leaderboard {
+    display: flex;
+    flex-direction: center;
+    font-family: 'Dancing Script', cursive;
+
+}
+
+th {
+    font-family: 'Dancing Script', cursive;
+    color: papayawhip;
+}
+
