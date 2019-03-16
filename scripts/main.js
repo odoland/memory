@@ -31,6 +31,7 @@ function populateGrid(size) {
     var grid = document.querySelector(".grid");
     let position, html, row;
 
+
     // Produces the html for each 
     for (let i=0; i < size; i++) {
 
@@ -55,6 +56,10 @@ function populateGrid(size) {
         document.getElementById(`card${mid}`).onclick = "";
         document.getElementById(`img${mid}`).src = "images/middle.gif";
     }
+
+    // Resize if too big;
+    if (size == 7) fixCSSsizes();
+
 }
 
 function assignCards(size) {
@@ -84,6 +89,15 @@ function assignCards(size) {
         [i1, i2] = [random_indices.pop(), random_indices.pop()];
         [grid[i1], grid[i2]] = [id, id];
     }
+    
+}
+
+function fixCSSsizes() {
+    const SIZE = "75px"
+
+    let cards = document.getElementsByClassName("cards");
+    console.log(cards, typeof cards);
+    Array.from(cards).forEach( (ele) => {ele.style.height = SIZE; ele.style.width= SIZE });
     
 }
 function cardClick(position) {
@@ -126,5 +140,6 @@ function resetGame() {
 
     document.querySelector(".grid").innerHTML = "";
     document.getElementById("game").style.display = "none";
+    document.getElementById("score").innerHTML = 0;
 }
 
