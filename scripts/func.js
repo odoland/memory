@@ -1,6 +1,6 @@
 /** Global constants for timing (delay) */
-const CARD_TURN = 300; // Time to 
-const CARD_SPIN = 500; // Time to spin card
+const CARD_TURN = 333; // Time to 
+const CARD_SPIN = 333; // Time to spin card
 const CARD_COVER = 800; // Time to wait before covering the card
 
 const VICTORY_DELAY = 800; // Time to wait before announcing victory
