@@ -1,4 +1,3 @@
-var LOWEST_SCORE = Infinity;
 /** "Module for shortcut functions!!" */
 
 function shuffleArray(array) {
@@ -83,7 +82,8 @@ function lockCards(...positions) {
 }
 
 function checkGameEnd(clicked, size) {
-    
+    /* Function checks for game end and also ends game */
+
     function setVictoryScreen() {
         document.querySelector(".grid").innerHTML = ` <img src="images/victory.gif">`
         document.querySelector("#reset").innerHTML = "Play Again!"
@@ -91,14 +91,31 @@ function checkGameEnd(clicked, size) {
     }
     if (sum(clicked) === size*size - (size%2) ) { // odd sizes get extra 1
         // reset the game;
-        console.log("game over!!!");
+        console.log("Game Over!!!");
         setTimeout(setVictoryScreen, 800);
         
         let current_score = parseInt(document.getElementById("score").innerHTML);
-        LOWEST_SCORE = Math.min(current_score, LOWEST_SCORE);
-        document.querySelector("#lowest_score").innerHTML = `<tr> ${LOWEST_SCORE} <tr>`
+
+        let lowest = Math.min(current_score, localStorage.getItem('lowestScore'));
+
+        localStorage.setItem('lowestScore', lowest);
+
+        document.querySelector("#lowest_score").innerHTML = `<tr> ${lowest} <tr>`
     }
 }
+
+function getlocalStorageScore() {
+    /* Updates html with localStorage */ 
+    const score = localStorage.getItem('lowestScore');
+    if (score == null || score == Infinity ) {
+        localStorage.setItem('lowestScore', Infinity);
+        document.getElementById("lowest_score").innerHTML = "&nbsp";
+    } else {
+        document.getElementById("lowest_score").innerHTML = score;
+    }
+
+}
+
 
 function cheat(grid) {
     let size = Math.sqrt(grid.length);

@@ -19,6 +19,7 @@ function gameStart() {
     clicked = new Array(size*size).fill(0); // Fill array with 0s. 1 marks clicked
     populateGrid(size);
     assignCards(size);
+    getlocalStorageScore(); // Update lowest score with local storage (in func.js)
     
 }
 
