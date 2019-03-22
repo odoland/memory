@@ -6,7 +6,7 @@ var size;
 var clicks = 0;
 
 /* Global Parameters to tune */
-const CLICK_DELAY = 800;
+const CLICK_DELAY = 600; // Delay after clicking a card
 
 
 function gameStart() {
@@ -94,6 +94,7 @@ function assignCards(size) {
 }
 
 function fixCSSsizes() {
+    /* This function fixes the CSS size when there are 7x7 or more cards */
     const SIZE = "75px"
 
     let cards = document.getElementsByClassName("cards");
@@ -102,14 +103,15 @@ function fixCSSsizes() {
     
 }
 function cardClick(position) {
+    /* Function for handling when cards are clicked */
 
-    if (canClick(query, position, clicked)) {
+    if (canClick(query, position, clicked)) { 
      
         turnCard(position);
         updateClicked(clicked, 1, position);
         query.push(position);
 
-
+        // If player has clicked two cards
         if (query.length === 2) {
             incrementClick();
 
@@ -123,16 +125,18 @@ function cardClick(position) {
             setTimeout( () => query = [], CLICK_DELAY); // Click Delay
         }
 
-    } else {
-        console.log("Cannot click that: ", query, clicked);
+    } else { // Prohibit clicking more than 2 cards
+        console.log("Cannot click.");
     }
 }
 
 function incrementClick() {
+    // Increment the global click counter for the score
     document.querySelector("#score").innerHTML = ++clicks;
 }
 
 function resetGame() {
+    /* Resets a game match by resetting HTML and all variables */
     grid = []; // 2d grid holding the image_ids
     query = []; // Holds at most 2 items for the images.
     clicked= [];

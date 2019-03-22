@@ -1,7 +1,14 @@
+/** Global constants for timing (delay) */
+const CARD_TURN = 300; // Time to 
+const CARD_SPIN = 500; // Time to spin card
+const CARD_COVER = 800; // Time to wait before covering the card
+
+const VICTORY_DELAY = 800; // Time to wait before announcing victory
+
 /** "Module for shortcut functions!!" */
 
 function shuffleArray(array) {
-    /* Randomly shuffles an array */
+    /* Randomly shuffles an array - (Fisher-Yates shuffle) */
 
     for (let i=0; i < array.length; i++) {
         j = Math.floor(Math.random() * (i));
@@ -10,7 +17,7 @@ function shuffleArray(array) {
         return array;
 }
 function range(end) {
-    /* Mimics (somewhat) Python's range function, except as a list , and single argument only*/
+    /* Partial mimic Python's range function, except as a list, and single argument only*/
     return [...Array(end).keys()];
 }
 
@@ -33,7 +40,6 @@ function canClick(query, position, clicked) {
     * User can click iff they did not click 2 cards already OR
     * If it hasn't been marked as a clicked card. 
     */
-    
     return !clicked[position] && query.length < 2;
 }
 
@@ -51,9 +57,9 @@ function turnCard(position) {
 
     card.style.animation = "spin 1s";
     
-    setTimeout( () => {image.src = `images/img${grid[position]}.png`;}, 300);
+    setTimeout( () => {image.src = `images/img${grid[position]}.png`;}, CARD_TURN);
         
-    setTimeout( () => {card.style.animation = "none"}, 500);
+    setTimeout( () => {card.style.animation = "none"}, CARD_SPIN);
 }
 
 function isMatch(query, grid) {
@@ -65,7 +71,7 @@ function coverCards(...positions) {
     
     function animateCover(i) {
 
-        setTimeout(() => {document.getElementById(`img${i}`).src = `images/back.png`}, 800);
+        setTimeout(() => {document.getElementById(`img${i}`).src = `images/back.png`}, CARD_COVER);
     }
 
     positions.forEach(animateCover);
@@ -92,8 +98,9 @@ function checkGameEnd(clicked, size) {
     if (sum(clicked) === size*size - (size%2) ) { // odd sizes get extra 1
         // reset the game;
         console.log("Game Over!!!");
-        setTimeout(setVictoryScreen, 800);
+        setTimeout(setVictoryScreen, VICTORY_DELAY);
         
+        /* Find the lowest score */
         let current_score = parseInt(document.getElementById("score").innerHTML);
 
         let lowest = Math.min(current_score, localStorage.getItem('lowestScore'));
@@ -117,6 +124,7 @@ function getlocalStorageScore() {
 }
 
 
+/* Developer functions */
 function cheat(grid) {
     let size = Math.sqrt(grid.length);
     for (let i=0; i<size; i++) {

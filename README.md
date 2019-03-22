@@ -1,3 +1,4 @@
-Deployed on githubpages:
+Deployed:
+odoland.github.io/memory
 
-odoland.github.io
+
